@@ -3,7 +3,7 @@ import {
   BrowserRouter as Router,
   Route
 } from 'react-router-dom';
-import app from './components/app'
+import app from './components/table'
 import NavBar from './NavBar';
 class App extends Component {
   render(){
