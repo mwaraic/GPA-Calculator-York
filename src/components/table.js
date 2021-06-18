@@ -134,7 +134,7 @@ return(
         <option>12</option>
       </Form.Control></td>
       <td>
-        <Form.Control as="select" value={this.state.grade[n] || "-"} size="sm" onChange={e => this.selectGradeP(e, n)} custom>
+        <Form.Control as="select" value={this.state.grade[n] || "-"} size="sm" onChange={e => this.selectGradeP(e, n)}>
         <option>-</option>
         <option>A+</option>  
         <option>A</option>
