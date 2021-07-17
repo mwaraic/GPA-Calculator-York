@@ -4,6 +4,7 @@ import {
   Route
 } from 'react-router-dom';
 import app from './components/table'
+import AppFooter from './footer';
 import NavBar from './NavBar';
 class App extends Component {
   render(){
@@ -14,7 +15,7 @@ class App extends Component {
    <Router>
      <Route path="/" component={app} exact/>
    </Router>
-   
+   <AppFooter/>
    </div>
    </>
   );}
