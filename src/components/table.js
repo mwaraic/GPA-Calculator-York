@@ -1,7 +1,7 @@
 import {Table, Form, Button, Badge } from 'react-bootstrap';
 import {Component, React} from 'react';
-
-
+import ReactHTMLTableToExcel from 'react-html-table-to-excel';
+import '../style.css'
 const rows=[]
  for (var i=1;i<=20;i++){
  rows.push(i)
@@ -109,7 +109,7 @@ return(
     
     <div style={{"margin-top": 50,"margin-bottom": 50}} className="container"> 
     <Form>
-    <Table striped bordered hover>
+    <Table id="table-to-xls" striped bordered hover>
     <thead>
       <tr>
         <th>#</th>
@@ -123,8 +123,8 @@ return(
     {rows.map(n=>(
       <tr key={n}>
       <td>{n})</td>
-      <td> <Form.Control value={this.state.course[n]|| ""} type="text" onChange={e => this.selectCourse(e, n)} /></td>
-      <td><Form.Control value={this.state.status[n]|| 0} as="select" size="sm" onChange={e => this.selectStatus(e, n)} >
+      <td><span className="visuallyhidden">{this.state.course[n]}</span><Form.Control value={this.state.course[n]|| ""} type="text" onChange={e => this.selectCourse(e, n)} /></td>
+      <td><span className="visuallyhidden">{this.state.status[n]}</span><Form.Control value={this.state.status[n]|| 0} as="select" size="sm" onChange={e => this.selectStatus(e, n)} >
         <option>0</option>
         <option>1</option>
         <option>3</option>
@@ -134,6 +134,7 @@ return(
         <option>12</option>
       </Form.Control></td>
       <td>
+        <span className="visuallyhidden">{this.state.grade[n]}</span>
         <Form.Control as="select" value={this.state.grade[n] || "-"} size="sm" onChange={e => this.selectGradeP(e, n)}>
         <option>-</option>
         <option>A+</option>  
@@ -147,15 +148,27 @@ return(
         <option>E</option>
         <option>F</option>
       </Form.Control></td>
-      <td><Form.Control value={this.state.gradep[n] || 0} type="number" disabled></Form.Control></td></tr>
+      <td><span className="visuallyhidden">{this.state.gradep[n]}</span><Form.Control value={this.state.gradep[n] || 0} type="number" disabled></Form.Control></td></tr>
     ))}
-  <td><Button variant="dark" style={{marginRight: 10 }} onClick={e=>this.handleSubmit(e)}>Calculate</Button></td><td><Button  variant="dark" onClick={this.resetState}>Reset</Button>
-  </td><td></td><td><p style={{marginLeft: 10,display: 'inline',fontSize: 20}}>Your GPA is: </p></td><td><Badge style={{fontSize: 20}}pill variant="danger">
+   <td></td><td></td><td></td><td><p style={{marginLeft: 10,display: 'inline',fontSize: 20}}>Your GPA is: </p></td> <td><Badge style={{fontSize: 20}}pill variant="danger">
   {this.state.gpa}
   </Badge>{' '}</td>
    </tbody>
   </Table>
- </Form>
+  <Table>
+    <tbody>
+  <td><Button variant="dark" style={{marginRight: 10 }} onClick={e=>this.handleSubmit(e)}>Calculate</Button></td><td><Button  variant="dark" onClick={this.resetState}>Reset</Button>
+  </td><td></td><td><ReactHTMLTableToExcel
+                    id="test-table-xls-button"
+                    className="download-table-xls-button"
+                    table="table-to-xls"
+                    filename="tablexls"
+                    sheet="tablexls"
+                    buttonText="Download as XLS"/></td>
+  </tbody>
+  </Table>
+ 
+ </Form> 
     </div>   
     
     </>    
