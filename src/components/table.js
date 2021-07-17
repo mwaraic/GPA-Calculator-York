@@ -150,7 +150,7 @@ return(
       </Form.Control></td>
       <td><span className="visuallyhidden">{this.state.gradep[n]}</span><Form.Control value={this.state.gradep[n] || 0} type="number" disabled></Form.Control></td></tr>
     ))}
-   <td></td><td></td><td></td><td><p style={{marginLeft: 10,display: 'inline',fontSize: 20}}>Your GPA is: </p></td> <td><Badge style={{fontSize: 20}}pill variant="danger">
+   <td></td><td></td><td></td><td><p style={{marginLeft: 10,display: 'inline',fontSize: 20}}>GPA</p></td> <td><Badge style={{fontSize: 20}}pill variant="danger">
   {this.state.gpa}
   </Badge>{' '}</td>
    </tbody>
@@ -162,7 +162,7 @@ return(
                     id="test-table-xls-button"
                     className="download-table-xls-button"
                     table="table-to-xls"
-                    filename="tablexls"
+                    filename="GPAReport"
                     sheet="tablexls"
                     buttonText="Download as XLS"/></td>
   </tbody>
