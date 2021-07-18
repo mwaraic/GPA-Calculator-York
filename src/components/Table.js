@@ -13,7 +13,7 @@ import {
   Button,
   Stack
 } from "@chakra-ui/react"
-
+import HeadingTemplate from './Heading_Template';
 import Data from './Data';
 
 class table extends Component{
@@ -108,6 +108,7 @@ render(){
  
 return(
     <>
+    <HeadingTemplate match="GPA Calculator"/>
     <Form>
     <Table id="table-to-xls" size="sm" style={{marginBottom: 20}}>
     <Thead>

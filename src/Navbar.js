@@ -14,7 +14,7 @@ import {
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import Logo from './components/images/logo.png'
-const Links = ['Features', 'Example', 'Calculator'];
+const Links = [{href:'/' ,link:'Home'},{href:'/example', link: 'Example'},{href:'/calculator', link: 'Calculator'}];
 
 
 export default function Navbar() {
@@ -22,7 +22,7 @@ export default function Navbar() {
 
   return (
     <>
-      <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
+      <Box bg={useColorModeValue('white.100', 'white.900')} px={4}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
           <IconButton
             size={'md'}
@@ -32,14 +32,14 @@ export default function Navbar() {
             onClick={isOpen ? onClose : onOpen}
           />
           <HStack spacing={8} alignItems={'center'}>
-            <Box><Image src={Logo} boxSize="50px" alt="logo"/></Box>
+            <Box><a href="/"><Image src={Logo} boxSize="50px" alt="logo"/></a></Box>
             <HStack
               as={'nav'}
               spacing={4}
               display={{ base: 'none', md: 'flex' }}>
               {Links.map((link) => (
-                <Button key={link}colorScheme="black" variant="link">
-                {link}
+                <Button onClick={()=> window.open(link.href, "_self")} colorScheme="black" variant="link">
+                {link.link}
               </Button>
               ))}
             </HStack>
@@ -54,8 +54,8 @@ export default function Navbar() {
             <Stack as={'nav'} spacing={4}>
               {Links.map((link) => (
                 
-               <Button key={link}colorScheme="black" variant="link">
-                {link}
+               <Button onClick={()=> window.open(link.href, "_self")}colorScheme="black" variant="link">
+                {link.link}
               </Button>
               ))}
             </Stack>

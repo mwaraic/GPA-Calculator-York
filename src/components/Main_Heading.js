@@ -2,7 +2,7 @@ import { Heading,
 Text,
 Button,
 Stack,
-Flex, Image
+Flex, Image,
 } from "@chakra-ui/react"
 import Lion from './images/giphy.gif'
 
@@ -77,16 +77,17 @@ export default function MainHeading(){
       calculate their GPA also gives them an option to save their grade report in spreadsheet for later use.
     </Text>
     <Stack spacing={6} direction={'row'}>
-      <Button
+     <Button
+      onClick={()=> window.open("/example", "_self")}
         rounded={'full'}
         px={6}
         colorScheme={'red'}
         bg={'red.400'}
         _hover={{ bg: 'red.500' }}>
-        Calculate
+      Calculate
       </Button>
-      <Button rounded={'full'} px={6}>
-        Example
+      <Button onClick={()=> window.open("/example", "_self")} rounded={'full'} px={6} >
+      Example
       </Button>
     </Stack>
     <Flex w={'full'}>

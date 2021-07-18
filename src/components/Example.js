@@ -4,8 +4,11 @@ import {
     Tr,
     Td,
   } from "@chakra-ui/react"
+  import HeadingTemplate from "./Heading_Template"
 export default function Example(){
-return(<><Table size="sm">
+return(<>
+<HeadingTemplate match="Example"/>
+<Table size="sm">
   <Tbody><Tr>
     <Td><Table>
       <Tbody><Tr>
