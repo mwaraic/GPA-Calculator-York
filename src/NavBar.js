@@ -5,7 +5,6 @@ import {
   Box,
   Flex,
   HStack,
-  Link,
   IconButton,
   useDisclosure,
   useColorModeValue,
@@ -17,20 +16,6 @@ import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import Logo from './components/images/logo.png'
 const Links = ['Features', 'Example', 'Calculator'];
 
-
-const NavLink = ({ children}) => (
-  <Link
-    px={2}
-    py={1}
-    rounded={'md'}
-    _hover={{
-      textDecoration: 'none',
-      bg: useColorModeValue('gray.200', 'gray.700'),
-    }}
-    href={'#'}>
-    {children}
-  </Link>
-);
 
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();

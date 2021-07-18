@@ -1,12 +1,12 @@
 import {Badge,Table,Form } from 'react-bootstrap';
 import {Component, React} from 'react';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
-import { DownloadIcon, RepeatIcon } from '@chakra-ui/icons';
-import { VisuallyHidden } from "@chakra-ui/react"
+/* import { DownloadIcon, RepeatIcon } from '@chakra-ui/icons';
+import { VisuallyHidden } from "@chakra-ui/react" */
 import '../style.css'
 import {
   Button,
-  Stack
+  /*Stack*/
 } from "@chakra-ui/react"
 
 import Data from './Data';
