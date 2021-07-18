@@ -4,18 +4,21 @@ import {
   Route
 } from 'react-router-dom';
 import app from './components/table'
-import AppFooter from './footer';
-import NavBar from './NavBar';
+import Navbar from './NavBar';
+import { ChakraProvider } from "@chakra-ui/react"
+import theme from './components/theme';
+
 class App extends Component {
   render(){
   return (
     <>
     <div>
-    <NavBar/>
+      <ChakraProvider theme={theme}>
+   <Navbar/>
    <Router>
      <Route path="/" component={app} exact/>
    </Router>
-   <AppFooter/>
+   </ChakraProvider>
    </div>
    </>
   );}
