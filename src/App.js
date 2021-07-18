@@ -3,21 +3,21 @@ import {
   BrowserRouter as Router,
   Route
 } from 'react-router-dom';
-import app from './components/table'
-import Navbar from './NavBar';
+import Page from './Page';
+import Navbar from './Navbar';
 import { ChakraProvider } from "@chakra-ui/react"
-import theme from './components/theme';
+import theme from './components/Theme';
 
 class App extends Component {
   render(){
   return (
     <>
     <div>
-      <ChakraProvider theme={theme}>
-   <Navbar/>
-   <Router>
-     <Route path="/" component={app} exact/>
-   </Router>
+   <ChakraProvider theme={theme}>
+      <Navbar/>
+        <Router>
+          <Route path="/" component={Page} exact/>
+        </Router>
    </ChakraProvider>
    </div>
    </>

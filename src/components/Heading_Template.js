@@ -2,7 +2,7 @@ import {
     Text,Heading
     } from "@chakra-ui/react"
     
-    export default function Heading2({match}){
+    export default function HeadingTemplate({match}){
         return(
             <>
             <br/>{''}<Heading

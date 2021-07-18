@@ -1,50 +1,23 @@
-import {Form, Badge } from 'react-bootstrap';
+import {Badge,Table,Form } from 'react-bootstrap';
 import {Component, React} from 'react';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
 import { DownloadIcon, RepeatIcon } from '@chakra-ui/icons';
 import { VisuallyHidden } from "@chakra-ui/react"
-import Example from './Example';
 import '../style.css'
-import Heading1 from './heading';
-import Heading2 from './heading2';
-import SplitWithImage from './Features';
 import {
-  Table,
-  Thead,
-  Tbody,
-  Tr,
-  Td,
   Button,
-  Grid, 
+  Stack
 } from "@chakra-ui/react"
 
-const rows=[]
- for (var i=1;i<=20;i++){
- rows.push(i)
- }
+import Data from './Data';
 
-const gradepoint=[
-  {Grade:'A+', Point: 9},
-  {Grade:'A', Point: 8},
-  {Grade:'B+', Point: 7},
-  {Grade:'B',Point: 6},
-  {Grade:'C+', Point: 5},
-  {Grade:'C', Point:4},
-  {Grade:'D+',Point:3},
-  {Grade:'D', Point:2},
-  {Grade:'E', Point:1},
-  {Grade:'F', Point:0},
-  {Grade:'-', Point: 0}
-]
-
-
-
-class app extends Component{
+class table extends Component{
   
   constructor(props) {
     super(props)
     
     this.state = {
+    filename: "",
     status:[undefined],
     grade:['-'],
     course:['-'],
@@ -55,7 +28,7 @@ class app extends Component{
   }
   selectGradeP(event, index) {
     this.selectGrade(event, index);
-    let grade=gradepoint.find(gradepoint=>gradepoint.Grade===event.target.value).Point
+    let grade=Data.GradePoint.find(gradepoint=>gradepoint.Grade===event.target.value).Point
     this.setState(oldState => {
       const newGradep= oldState.gradep.slice();
       newGradep[index]=grade
@@ -93,8 +66,16 @@ class app extends Component{
       };
     });
   };
-
-
+  filename(event){
+    event.persist();
+    this.setState(oldState => {
+      var newfilename = oldState.filename.slice()
+      newfilename= event.target.value
+      return {
+        filename: newfilename
+      };
+    });
+  }
   resetState = () => {
      this.setState(this.baseState)
   }
@@ -122,30 +103,23 @@ render(){
  
 return(
     <>
-     <Heading1/>
-    <div style={{marginTop: 20,marginBottom: 50, minWidth: 20}} className="container">
-    <Heading2 match="Features"/>
-    <SplitWithImage/>
-    <Heading2 match="Example"/>
-    <Example/>
-    <Heading2 match="GPA Calculator"/>
     <Form>
-    <Table id="table-to-xls" size="sm" style={{marginBottom: 20}}>
-    <Thead>
-      <Tr>
-        <Td><strong>#</strong></Td>
-        <Td><strong>Course</strong></Td>
-        <Td><strong>Credit Weight</strong></Td>
-        <Td><strong>Grade</strong></Td>
-        <Td><strong>Grade Point Value</strong></Td>
-      </Tr>
-    </Thead>
-    <Tbody>
-    {rows.map(n=>(
-      <Tr key={n}>
-      <Td>{n}</Td>
-      <Td><VisuallyHidden>{this.state.course[n]}</VisuallyHidden><Form.Control value={this.state.course[n]|| ""} type="text" onChange={e => this.selectCourse(e, n)} /></Td>
-      <Td><VisuallyHidden>{this.state.status[n]}</VisuallyHidden><Form.Control value={this.state.status[n]|| 0} as="select" size="sm" onChange={e => this.selectStatus(e, n)} >
+    <Table id="table-to-xls" striped bordered hover>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Course</th>
+        <th>Credit Weight</th>
+        <th>Grade</th>
+        <th>Grade Point Value</th>
+      </tr>
+    </thead>
+    <tbody>
+    {Data.Rows.map(n=>(
+      <tr key={n}>
+      <td>{n})</td>
+      <td><span className="visuallyhidden">{this.state.course[n]}</span><Form.Control value={this.state.course[n]|| ""} type="text" onChange={e => this.selectCourse(e, n)} /></td>
+      <td><span className="visuallyhidden">{this.state.status[n]}</span><Form.Control value={this.state.status[n]|| 0} as="select" size="sm" onChange={e => this.selectStatus(e, n)} >
         <option>0</option>
         <option>1</option>
         <option>3</option>
@@ -153,9 +127,9 @@ return(
         <option>6</option>
         <option>8</option>
         <option>12</option>
-      </Form.Control></Td>
-      <Td>
-      <VisuallyHidden>{this.state.grade[n]}</VisuallyHidden>
+      </Form.Control></td>
+      <td>
+        <span className="visuallyhidden">{this.state.grade[n]}</span>
         <Form.Control as="select" value={this.state.grade[n] || "-"} size="sm" onChange={e => this.selectGradeP(e, n)}>
         <option>-</option>
         <option>A+</option>  
@@ -168,31 +142,30 @@ return(
         <option>D</option>
         <option>E</option>
         <option>F</option>
-      </Form.Control></Td>
-      <Td><VisuallyHidden>{this.state.gradep[n]}</VisuallyHidden><Form.Control value={this.state.gradep[n] || 0} type="number" disabled></Form.Control></Td></Tr>
+      </Form.Control></td>
+      <td><span className="visuallyhidden">{this.state.gradep[n]}</span><Form.Control value={this.state.gradep[n] || 0} type="number" disabled></Form.Control></td></tr>
     ))}
-   <Td></Td><Td></Td><Td></Td><Td><p style={{display: 'inline',fontSize: 20}}>GPA</p></Td> <Td><Badge style={{fontSize: 15}}pill variant="danger">
+   <td></td><td></td><td></td><td><p style={{marginLeft: 10,display: 'inline',fontSize: 20}}>GPA</p></td> <td><Badge style={{fontSize: 20}}pill variant="danger">
   {this.state.gpa}
-  </Badge>{' '}</Td>
-   </Tbody>
-  </Table>  
-  <Grid templateColumns="repeat(3, 1fr)" gap={2}>
-  <Button rounded={'full'} colorScheme="blue" onClick={e=>this.handleSubmit(e)}>Calculate</Button>
-  <Button rounded={'full'}  colorScheme="red" onClick={this.resetState}><RepeatIcon/></Button>
-  <Button rounded={'full'} colorScheme="green"><DownloadIcon/>
-                   <ReactHTMLTableToExcel
-                    
+  </Badge>{' '}</td>
+   </tbody>
+  </Table>
+  <Table>
+    <tbody>
+  <td><Button variant="dark" style={{marginRight: 10 }} onClick={e=>this.handleSubmit(e)}>Calculate</Button></td><td><Button  variant="dark" onClick={this.resetState}>Reset</Button>
+  </td><td></td><td><ReactHTMLTableToExcel
                     id="test-table-xls-button"
                     className="download-table-xls-button"
                     table="table-to-xls"
                     filename="GPAReport"
                     sheet="tablexls"
-                    buttonText=""/></Button>
-</Grid>
+                    buttonText="Download as XLS"/></td>
+  </tbody>
+  </Table>
+ 
  </Form> 
-   </div>
     </>    
     );
 }}
 
-export default app;
+export default table;

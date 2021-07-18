@@ -6,7 +6,7 @@ Flex, Image
 } from "@chakra-ui/react"
 import Lion from './images/giphy.gif'
 
-export default function Heading1(){
+export default function MainHeading(){
     return(
     <Stack
     textAlign={'center'}

@@ -1,5 +1,5 @@
 import React from 'react';
-import Example from './components/function';
+import Example from './components/ColorMode';
 import './style.css'
 import {
   Box,
@@ -10,7 +10,8 @@ import {
   useDisclosure,
   useColorModeValue,
   Stack,
-  Image
+  Image,
+  Button
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import Logo from './components/images/logo.png'
@@ -52,7 +53,9 @@ export default function Navbar() {
               spacing={4}
               display={{ base: 'none', md: 'flex' }}>
               {Links.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
+                <Button key={link}colorScheme="black" variant="link">
+                {link}
+              </Button>
               ))}
             </HStack>
           </HStack>
@@ -65,7 +68,10 @@ export default function Navbar() {
           <Box pb={4} display={{ md: 'none' }}>
             <Stack as={'nav'} spacing={4}>
               {Links.map((link) => (
-                <NavLink key={link}>{link}</NavLink>
+                
+               <Button key={link}colorScheme="black" variant="link">
+                {link}
+              </Button>
               ))}
             </Stack>
           </Box>
