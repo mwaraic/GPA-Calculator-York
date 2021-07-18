@@ -1,3 +1,3 @@
-YorkU GPA Calculator
+# YorkU GPA Calculator
 
 https://yorkcalculator.netlify.app/
