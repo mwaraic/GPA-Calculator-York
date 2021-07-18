@@ -1,12 +1,17 @@
-import {Badge,Table,Form } from 'react-bootstrap';
+import {Form, Badge } from 'react-bootstrap';
 import {Component, React} from 'react';
 import ReactHTMLTableToExcel from 'react-html-table-to-excel';
-/* import { DownloadIcon, RepeatIcon } from '@chakra-ui/icons';
-import { VisuallyHidden } from "@chakra-ui/react" */
+import { DownloadIcon, RepeatIcon } from '@chakra-ui/icons';
+import { VisuallyHidden } from "@chakra-ui/react"
 import '../style.css'
 import {
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Td,
   Button,
-  /*Stack*/
+  Stack
 } from "@chakra-ui/react"
 
 import Data from './Data';
@@ -104,66 +109,60 @@ render(){
 return(
     <>
     <Form>
-    <Table id="table-to-xls" striped bordered hover>
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Course</th>
-        <th>Credit Weight</th>
-        <th>Grade</th>
-        <th>Grade Point Value</th>
-      </tr>
-    </thead>
-    <tbody>
+    <Table id="table-to-xls" size="sm" style={{marginBottom: 20}}>
+    <Thead>
+      <Tr>
+        <Td><strong>#</strong></Td>
+        <Td><strong>Course</strong></Td>
+        <Td><strong>Credit Weight</strong></Td>
+        <Td><strong>Grade</strong></Td>
+        <Td><strong>Grade Point Value</strong></Td>
+      </Tr>
+    </Thead>
+    <Tbody>
     {Data.Rows.map(n=>(
-      <tr key={n}>
-      <td>{n})</td>
-      <td><span className="visuallyhidden">{this.state.course[n]}</span><Form.Control value={this.state.course[n]|| ""} type="text" onChange={e => this.selectCourse(e, n)} /></td>
-      <td><span className="visuallyhidden">{this.state.status[n]}</span><Form.Control value={this.state.status[n]|| 0} as="select" size="sm" onChange={e => this.selectStatus(e, n)} >
-        <option>0</option>
-        <option>1</option>
-        <option>3</option>
-        <option>4</option>
-        <option>6</option>
-        <option>8</option>
-        <option>12</option>
-      </Form.Control></td>
-      <td>
-        <span className="visuallyhidden">{this.state.grade[n]}</span>
-        <Form.Control as="select" value={this.state.grade[n] || "-"} size="sm" onChange={e => this.selectGradeP(e, n)}>
-        <option>-</option>
-        <option>A+</option>  
-        <option>A</option>
-        <option>B+</option>
-        <option>B</option>
-        <option>C+</option>
-        <option>C</option>
-        <option>D+</option>
-        <option>D</option>
-        <option>E</option>
-        <option>F</option>
-      </Form.Control></td>
-      <td><span className="visuallyhidden">{this.state.gradep[n]}</span><Form.Control value={this.state.gradep[n] || 0} type="number" disabled></Form.Control></td></tr>
+      <Tr key={n}>
+      <Td>{n}</Td>
+      <Td><VisuallyHidden>{this.state.course[n]}</VisuallyHidden><Form.Control sm="md" value={this.state.course[n]|| ""} type="text" onChange={e => this.selectCourse(e, n)} /></Td>
+      <Td><VisuallyHidden>{this.state.status[n]}</VisuallyHidden><Form.Control value={this.state.status[n]|| 0} as="select" style={{width:"auto"}}  onChange={e => this.selectStatus(e, n)} >
+        {Data.Credits.map(
+          n=>(
+          <option>{n}</option>
+          )
+        )}
+      </Form.Control></Td>
+      <Td>
+      <VisuallyHidden>{this.state.grade[n]}</VisuallyHidden>
+        <Form.Control value={this.state.grade[n] || "-"} as="select" style={{width:"auto"}} onChange={e => this.selectGradeP(e, n)}>
+        {Data.GradePoint.map(
+          n=>(
+            <option>{n.Grade}</option>
+          )
+        )}
+      </Form.Control ></Td>
+      <Td><VisuallyHidden>{this.state.gradep[n]}</VisuallyHidden><Form.Control size="md" value={this.state.gradep[n] || 0} type="number" disabled></Form.Control></Td></Tr>
     ))}
-   <td></td><td></td><td></td><td><p style={{marginLeft: 10,display: 'inline',fontSize: 20}}>GPA</p></td> <td><Badge style={{fontSize: 20}}pill variant="danger">
+   <Td></Td><Td></Td><Td></Td><Td><p style={{display: 'inline',fontSize: 20}}>GPA</p></Td> <Td><Badge style={{fontSize: 15}}pill variant="danger">
   {this.state.gpa}
-  </Badge>{' '}</td>
-   </tbody>
-  </Table>
-  <Table>
-    <tbody>
-  <td><Button variant="dark" style={{marginRight: 10 }} onClick={e=>this.handleSubmit(e)}>Calculate</Button></td><td><Button  variant="dark" onClick={this.resetState}>Reset</Button>
-  </td><td></td><td><ReactHTMLTableToExcel
+  </Badge>{' '}</Td>
+   </Tbody>
+  </Table>  
+  <Stack spacing={4} direction="row" align="center">
+  <Button size="md" colorScheme="blue" onClick={e=>this.handleSubmit(e)}><i className="fa fa-calculator" aria-hidden="true"></i></Button>
+
+  <Button size="md" colorScheme="red" onClick={this.resetState}><RepeatIcon/></Button><br/>{''}
+  <Form.Control  placeholder="Type your filename..." size="md" value={this.state.filename || ""} type="text" onChange={e => this.filename(e)} />
+  <ReactHTMLTableToExcel
+                    
                     id="test-table-xls-button"
-                    className="download-table-xls-button"
+                    className="btn btn-outline-success btn-lg"
                     table="table-to-xls"
-                    filename="GPAReport"
+                    filename={this.state.filename}
                     sheet="tablexls"
-                    buttonText="Download as XLS"/></td>
-  </tbody>
-  </Table>
- 
- </Form> 
+                    buttonText={<DownloadIcon/>}/>
+
+  </Stack>
+   </Form> 
     </>    
     );
 }}
