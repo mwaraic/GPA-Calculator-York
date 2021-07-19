@@ -87,7 +87,7 @@ export default function MainHeading(){
       
     </Heading><Image src={Lion} boxSize="300px" alt="lion"/>
     <Text color={'gray.500'} maxW={'3xl'}>
-      A specially designed calulator for York University students which aside from helping them 
+      A specially designed calculator for York University students, which aside from helping them 
       calculate their GPA also gives them an option to save their grade report in spreadsheet for later use.
     </Text>
     <Stack spacing={6} direction={'row'}>
