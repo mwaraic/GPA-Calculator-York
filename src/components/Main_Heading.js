@@ -17,8 +17,22 @@ export default function MainHeading(){
       fontWeight={600}
       fontSize={{ base: '3xl', sm: '4xl', md: '6xl' }}
       lineHeight={'110%'}>
-     <Text as={'span'}>
-    YorkU GPA Calculator  {' '}</Text>
+      <Text as={'span'} color={'red.400'}>YorkU</Text>{' '}
+      <Text  as={'span'}
+            position={'relative'}
+            _after={{
+              content: "''",
+              width: 'full',
+              height: '30%',
+              position: 'absolute',
+              bottom: 1,
+              left: 0,
+              bg: 'red.400',
+              zIndex: -1,
+            }}>
+              GPA
+            </Text>{' '}
+            <Text as={'span'} color={'red.400'}>Calculator</Text>
     <br/>{''}
       <Text as={'span'}
             position={'relative'}
@@ -78,7 +92,7 @@ export default function MainHeading(){
     </Text>
     <Stack spacing={6} direction={'row'}>
      <Button
-      onClick={()=> window.open("/example", "_self")}
+      onClick={()=> window.open("/calculator", "_self")}
         rounded={'full'}
         px={6}
         colorScheme={'red'}

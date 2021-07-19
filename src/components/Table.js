@@ -152,7 +152,7 @@ return(
   <Button size="lg" colorScheme="blue" onClick={e=>this.handleSubmit(e)}><i className="fa fa-calculator" aria-hidden="true"></i></Button>
 
   <Button size="lg" colorScheme="red" onClick={this.resetState}><RepeatIcon/></Button><br/>{''}
-  <Form.Control  placeholder="Type your filename..." size="lg" value={this.state.filename || ""} type="text" onChange={e => this.filename(e)} />
+  <Form.Control  placeholder="Filename..." size="lg" value={this.state.filename || ""} type="text" onChange={e => this.filename(e)} />
   <ReactHTMLTableToExcel
                     
                     id="test-table-xls-button"
