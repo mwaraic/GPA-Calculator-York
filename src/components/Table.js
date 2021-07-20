@@ -124,8 +124,8 @@ return(
     {Data.Rows.map(n=>(
       <Tr key={n}>
       <Td>{n}</Td>
-      <Td><VisuallyHidden>{this.state.course[n]}</VisuallyHidden><Form.Control sm="md" value={this.state.course[n]|| ""} type="text" onChange={e => this.selectCourse(e, n)} /></Td>
-      <Td><VisuallyHidden>{this.state.status[n]}</VisuallyHidden><Form.Control value={this.state.status[n]|| 0} as="select" style={{width:"auto"}}  onChange={e => this.selectStatus(e, n)} >
+      <Td><VisuallyHidden>{this.state.course[n]}</VisuallyHidden><Form.Control size="sm" value={this.state.course[n]|| ""} type="text" onChange={e => this.selectCourse(e, n)} /></Td>
+      <Td><VisuallyHidden>{this.state.status[n]}</VisuallyHidden><Form.Control size="sm" value={this.state.status[n]|| 0} as="select" style={{width:"auto"}}  onChange={e => this.selectStatus(e, n)} >
         {Data.Credits.map(
           n=>(
           <option>{n}</option>
@@ -134,14 +134,14 @@ return(
       </Form.Control></Td>
       <Td>
       <VisuallyHidden>{this.state.grade[n]}</VisuallyHidden>
-        <Form.Control value={this.state.grade[n] || "-"} as="select" style={{width:"auto"}} onChange={e => this.selectGradeP(e, n)}>
+        <Form.Control value={this.state.grade[n] || "-"} as="select" style={{width:"auto"}} size="sm" onChange={e => this.selectGradeP(e, n)}>
         {Data.GradePoint.map(
           n=>(
             <option>{n.Grade}</option>
           )
         )}
       </Form.Control ></Td>
-      <Td><VisuallyHidden>{this.state.gradep[n]}</VisuallyHidden><Form.Control size="md" value={this.state.gradep[n] || 0} type="number" disabled></Form.Control></Td></Tr>
+      <Td><VisuallyHidden>{this.state.gradep[n]}</VisuallyHidden><Form.Control size="sm" value={this.state.gradep[n] || 0} type="number" disabled></Form.Control></Td></Tr>
     ))}
    <Td></Td><Td></Td><Td></Td><Td><p style={{display: 'inline',fontSize: 20}}>GPA</p></Td> <Td><Badge style={{fontSize: 15}}pill variant="danger">
   {this.state.gpa}
@@ -149,14 +149,14 @@ return(
    </Tbody>
   </Table>  
   <Stack spacing={4} direction="row" align="center">
-  <Button size="lg" colorScheme="blue" onClick={e=>this.handleSubmit(e)}><i className="fa fa-calculator" aria-hidden="true"></i></Button>
+  <Button size="md" colorScheme="blue" onClick={e=>this.handleSubmit(e)}><i className="fa fa-calculator" aria-hidden="true"></i></Button>
 
-  <Button size="lg" colorScheme="red" onClick={this.resetState}><RepeatIcon/></Button><br/>{''}
-  <Form.Control  placeholder="Filename..." size="lg" value={this.state.filename || ""} type="text" onChange={e => this.filename(e)} />
+  <Button size="md" colorScheme="red" onClick={this.resetState}><RepeatIcon/></Button><br/>{''}
+  <Form.Control  placeholder="Filename..." size="md" value={this.state.filename || ""} type="text" onChange={e => this.filename(e)} />
   <ReactHTMLTableToExcel
                     
                     id="test-table-xls-button"
-                    className="btn btn-outline-success btn-lg"
+                    className="btn btn-outline-success btn-md"
                     table="table-to-xls"
                     filename={this.state.filename}
                     sheet="tablexls"
